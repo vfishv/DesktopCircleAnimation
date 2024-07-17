@@ -3,6 +3,8 @@ package com.snow.cc.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Parcelable;
+
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 /**
@@ -23,12 +25,16 @@ public class ShortcutUtils {
     private static boolean addShortcut(String name, int iconId, Context context, Intent intent) {
         Intent intent1 = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
         intent1.putExtra("duplicate", false);
-        intent1.putExtra("android.intent.extra.shortcut.NAME", name);
+        //intent1.putExtra("android.intent.extra.shortcut.NAME", name);
+        intent1.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
         intent1.putExtra("android.intent.extra.shortcut.ICON", BitmapFactory.decodeResource(context.getResources(),
                 iconId));
-        intent1.putExtra("android.intent.extra.shortcut.ICON_RESOURCE", Intent.ShortcutIconResource.fromContext(
+//        intent1.putExtra("android.intent.extra.shortcut.ICON_RESOURCE", Intent.ShortcutIconResource.fromContext(
+//                context, iconId));
+        intent1.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(
                 context, iconId));
-        intent1.putExtra("android.intent.extra.shortcut.INTENT", intent);
+        //intent1.putExtra("android.intent.extra.shortcut.INTENT", intent);
+        intent1.putExtra(Intent.EXTRA_SHORTCUT_INTENT, intent);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);//65536
         context.sendBroadcast(intent1);
         return true;

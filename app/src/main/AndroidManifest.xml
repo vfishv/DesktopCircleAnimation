@@ -1,7 +1,8 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.snow.cc">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission
+        android:name="com.android.launcher.permission.INSTALL_SHORTCUT"
+        android:maxSdkVersion="25" />
 
     <application
         android:name=".base.App"
@@ -12,6 +13,7 @@
         android:theme="@style/AppTheme">
 
         <activity
+            android:exported="true"
             android:name=".ui.MainActivity"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait">
@@ -26,6 +28,7 @@
 
 
         <activity
+            android:exported="true"
             android:name=".ui.LauncherActivity"
             android:activityOpenEnterAnimation="@anim/widget_bg_anim"
             android:launchMode="singleInstance"
